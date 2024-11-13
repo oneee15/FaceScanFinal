@@ -1,4 +1,43 @@
 {
   "name": "FaceAppFinal",
-  "displayName": "FaceAppFinal"
+  "displayName": "FaceAppFinal",
+  "detectionApiUrl": "",
+  "detectionApiKey": "",
+  "colorPallete": "#00e0f3,#202b4c,#69c4d1,#344e63,#1c191f,#6c6762",
+  "colors": {
+    "bg": {
+      "dark": "#202b4c",
+      "light": "#344e63",
+      "gradient": [
+        "#344e63",
+        "#202b4c"
+      ]
+    },
+    "text": {
+      "primary": "#00e0f3",
+      "secondary": "#d6d4d2"
+    },
+    "primary": {
+      "light": "#00e0f3",
+      "dim": "#69c4d1",
+      "gradient": [
+        "#202b4c",
+        "#69c4d1",
+        "#00e0f3"
+      ]
+    },
+    "warning": {
+      "gradient": [
+        "#A852A6",
+        "#AF2465"
+      ]
+    }
+  },
+  "resources": {
+    "trainData": [
+      {
+        "acne": "https://dermnetnz.org/topics/acne-face-images"
+      }
+    ]
+  }
 }

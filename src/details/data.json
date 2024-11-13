@@ -1,0 +1,25 @@
+{
+  "diseases": [
+    {
+      "className": "Acne",
+      "description": "also known as acne vulgaris, is a long-term skin condition that occurs when dead skin cells and oil from the skin clog hair follicles. Typical features of the condition include blackheads or whiteheads, pimples, oily skin, and possible scarring. It primarily affects skin with a relatively high number of oil glands, including the face, upper part of the chest, and back",
+      "causes": "Risk factors for the development of acne, other than genetics, have not been conclusively identified. Possible secondary contributors include hormones, infections, diet, and stress. Studies investigating the impact of smoking on the incidence and severity of acne have been inconclusive. Cleanliness (hygiene) and sunlight are not associated with acne.",
+      "medication": "Acne usually improves around the age of 20 but may persist into adulthood. Permanent physical scarring may occur. Rare complications from acne or its treatment include the formation of pyogenic granulomas, osteoma cutis, and acne with facial edema. Early and aggressive treatment of acne is advocated by some in the medical community to reduce the chances of these poor outcomes.",
+      "link": "https://en.wikipedia.org/wiki/Acne"
+    },
+    {
+      "className": "Eczema",
+      "description": "Dermatitis is a term used for different types of skin inflammation, typically characterized by itchiness, redness and a rash. In cases of short duration, there may be small blisters, while in long-term cases the skin may become thickened. The area of skin involved can vary from small to covering the entire body. Dermatitis is also called eczema but the same term is often used for the most common type of skin inflammation",
+      "causes": "The cause of dermatitis is unknown but is presumed to be a combination of genetic and environmental factors.",
+      "medication": "Most cases are well managed with topical treatments and ultraviolet light. About 2% of cases are not. In more than 60% of young children, the condition subsides by adolescence.",
+      "link": "https://en.wikipedia.org/wiki/Dermatitis"
+    },
+    {
+      "className": "Vitiligo",
+      "description": "Vitiligo is a chronic autoimmune disorder that causes patches of skin to lose pigment or color. The cause of vitiligo is unknown, but it may be related to immune system changes, genetic factors, stress, or sun exposure. Treatment options include topical medications, light therapy, surgery and cosmetics.[6] The condition can show up on any skin type as a light peachy color and can appear on any place on the body in all sizes. The spots on the skin known as vitiligo are also able to “change” as spots lose and regain pigment; they will stay in relatively the same areas but can move over time and some big patches can move through the years but never disappear overnight.",
+      "causes": "Although multiple hypotheses have been suggested as potential triggers that cause vitiligo, studies strongly imply that changes in the immune system are responsible for the condition. Vitiligo has been proposed to be a multifactorial disease with genetic susceptibility and environmental factors both thought to play a role. It is hypothesized that damaging environmental factors can disrupt redox reactions necessary for protein folding, so skin cells may initiate the unfolded protein response which releases cytokines, thus mounting an immune response",
+      "medication": "There is no cure for vitiligo but several treatment options are available. The best evidence is for applied steroids and ultraviolet light in combination with creams. Due to the higher risks of skin cancer, the United Kingdom's National Health Service suggests phototherapy be used only if primary treatments are ineffective. Lesions located on the hands, feet, and joints are the most difficult to repigment; those on the face are easiest to return to the natural skin color as the skin is thinner.",
+      "link": "https://en.wikipedia.org/wiki/Vitiligo"
+    }
+  ]
+}
