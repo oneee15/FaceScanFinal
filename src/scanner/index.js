@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { View, Text, StyleSheet, Dimensions } from "react-native";
-import { Camera, useCameraDevice } from 'react-native-vision-camera';
+import { Camera, getCameraDevice } from 'react-native-vision-camera';
 import { useNavigation } from "@react-navigation/native";
 
 import { colors } from '../../app.json';
@@ -25,7 +25,10 @@ const ScannerScreen = () => {
     const navigation = useNavigation()
     const cameraRef = useRef(null)
     const [detecting, setDetecting] = useState(false)
-    const [cameraDevice, setCameraDevice] = useState(useCameraDevice('back'))
+
+    const devices = Camera.getAvailableCameraDevices()
+    const [cameraDevice, setCameraDevice] = useState(getCameraDevice(devices, 'back'))
+
     const [diseases, setDiseases] = useState([])
     const [boxes, setBoxes] = useState([])
 
@@ -41,7 +44,8 @@ const ScannerScreen = () => {
     }, [detecting])
 
     const handleSwitchCamera = () => {
-        setCameraDevice(cameraDevice == 'back' ? useCameraDevice('front') : useCameraDevice('back'))
+        const position = cameraDevice?.position == 'front' ? 'back' : 'front';
+        setCameraDevice(getCameraDevice(devices, position));
     }
 
     const handleStartStop = async () => {
@@ -64,11 +68,12 @@ const ScannerScreen = () => {
 
         if (predictions.length > 0) {
 
-            setDiseases((prev) => [...prev, predictions])
+            let namedPredictions = predictions.map((pred) => {
+                return { className: pred["class"], probability: pred["confidence"] }
+            })
+            setDiseases((prev) => [...prev, ...namedPredictions])
             setBoxes(predictions)
 
-            console.log("Letters:", letters)
-            console.log("Message:", message)
         }
 
     }
@@ -88,9 +93,22 @@ const ScannerScreen = () => {
 
     }
 
+    const handleScanProceedBtn = () => {
+        console.log("Detecting State: ", detecting)
+        console.log("Detections: ", diseases)
+        handleStartStop()
+        if (!detecting && diseases.length == 0) {
+            setDetecting(true)
+            handleDetect()
+        } else if (!detecting && diseases.length > 0) {
+            setDetecting(false)
+            handleProceed()
+        }
+    }
+
     return (
         <View style={styles.container}>
-            <View style={{ flex: 4 }}>
+            <View style={{ flex: 7 }}>
                 <Camera
                     ref={cameraRef}
                     style={styles.cameraStyle}
@@ -114,13 +132,13 @@ const ScannerScreen = () => {
                 />
                 <View style={{ flex: 1 }} />
                 <GradientButton
-                    onPress={handleProceed}
-                    text="Show Results"
+                    onPress={handleScanProceedBtn}
+                    text={diseases?.length > 0 ? "Show Results" : detecting ? "Detecting" : "Start Scanning"}
                     iconProp={{
                         float: 'right',
                         type: 'AntDesign',
-                        name: 'export',
-                        size: 20,
+                        name: diseases?.length > 0 ? "search1" : "scan1",
+                        size: 25,
                         color: '#fff',
                         style: { flex: 0, marginTop: 0 }
                     }}
@@ -135,12 +153,13 @@ const ScannerScreen = () => {
 const styles = {
     container: {
         ...StyleSheet.absoluteFill,
-        flex: 1
+        flex: 1,
+        backgroundColor: colors.bg.dark
     },
     cameraStyle: {
         ...StyleSheet.absoluteFill,
         width: Dimensions.get("screen").width,
-        height: Dimensions.get("screen").height - 300
+        height: Dimensions.get("screen").height - 226
     }
 }
 

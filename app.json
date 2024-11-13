@@ -1,8 +1,8 @@
 {
   "name": "FaceAppFinal",
-  "displayName": "FaceAppFinal",
-  "detectionApiUrl": "",
-  "detectionApiKey": "",
+  "displayName": "Face Check",
+  "detectionApiUrl": "https://detect.roboflow.com/face-disease-lia1d/6",
+  "detectionApiKey": "CkPAk3uuEjAVQ9hz7oC8",
   "colorPallete": "#00e0f3,#202b4c,#69c4d1,#344e63,#1c191f,#6c6762",
   "colors": {
     "bg": {
