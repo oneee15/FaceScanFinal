@@ -1,0 +1,15 @@
+Run app:
+ terminal 1 (CMD): npx react-native start --reset-cache
+ terminal 2 (CMD): npx react-native run-android
+
+Clean cache:
+ terminal 3 (Powershell): cd android, ./gradlew clean, cd ..
+
+Build APK:
+ terminal (Powershell): cd android, ./gradlew clean, ./gradlew assembleRelease
+ APK Location: android/app/build/outputs/apk/release/app-release.apk
+
+Uploading APK (via web url)
+ Link: https://installonair.com/
+ Upload to google drive
+ 
