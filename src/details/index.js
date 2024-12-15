@@ -3,24 +3,35 @@ import { Layout, Text } from '@ui-kitten/components';
 import { BackHandler, FlatList, Linking, StyleSheet, View, TouchableOpacity } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 
-import {colors} from '../../app.json';
+import { colors } from '../../app.json';
 import { GradientButton } from '../components/Buttons';
 
-import {diseases} from './data.json';
+import { diseases } from './data.json';
 
-const testData = [{name: "Eczema", percentage: "80%"}, {name: "Tigyawat", percentage: "60%"}]
+const testData = [{ name: "Eczema", percentage: "80%" }, { name: "Tigyawat", percentage: "60%" }]
 
-const ListResults = ({data, navigation}) => {
+const BulletList = ({ value }) => {
+  if (value && value?.includes(",")) {
+    let list = value.split(",")
+    console.log(list)
+    return list.map((item, index) => {
+      return <Text style={styles.resultLabel} key={index}>&#8226; {item}</Text>
+    })
+  }
+  return ""
+}
+
+const ListResults = ({ data, navigation }) => {
 
   const [disease, setDisease] = useState({})
 
   useEffect(() => {
     diseases.map((item, index) => {
-      if(item.className == data.className){
+      if (item.className == data.className) {
         setDisease(item)
       }
     })
-    console.log(disease)
+    // console.log(disease)
   }, [diseases, data])
 
   const handleReset = () => {
@@ -35,40 +46,46 @@ const ListResults = ({data, navigation}) => {
   }
 
   return (
-    <View style={{flex: 1}}>
+    <View style={{ flex: 1 }}>
       <Text style={styles.headerText}>{disease?.className}</Text>
 
-      <FlatList 
+      <FlatList
         scrollEnabled={true}
         data={[1]}
         showsVerticalScrollIndicator={false}
         renderItem={() => {
           return (
             <View>
-              <Text style={{...styles.resultLabel, color: 'orange'}}>Description:</Text>
-              <View style={{height: 8}}></View>
+              <Text style={{ ...styles.resultLabel, color: 'orange' }}>Description:</Text>
+              <View style={{ height: 8 }}></View>
               <Text style={styles.resultLabel}>{disease?.description}</Text>
-              <View style={{height: 30}}></View>
+              <View style={{ height: 30 }}></View>
 
-              <Text style={{...styles.resultLabel, color: 'orange'}}>Causes:</Text>
-              <View style={{height: 8}}></View>
+              <Text style={{ ...styles.resultLabel, color: 'orange' }}>Causes:</Text>
+              <View style={{ height: 8 }}></View>
               <Text style={styles.resultLabel}>{disease?.causes}</Text>
-              <View style={{height: 30}}></View>
+              <View style={{ height: 30 }}></View>
 
-              <Text style={{...styles.resultLabel, color: 'orange'}}>Medication:</Text>
-              <View style={{height: 8}}></View>
-              <Text style={styles.resultLabel}>{disease?.medication}</Text>
-              <View style={{height: 30}}></View>
+              <Text style={{ ...styles.resultLabel, color: 'orange' }}>Medication:</Text>
+              <View style={{ height: 8 }}></View>
+              {/* <Text style={styles.resultLabel}>{disease?.medication}</Text> */}
+              <BulletList value={disease?.medication} />
+              <View style={{ height: 30 }}></View>
 
-              <TouchableOpacity onPress={() => handleOnPressLink(disease?.link)}>
+              <Text style={{ ...styles.resultLabel, color: 'orange' }}>Prevention:</Text>
+              <View style={{ height: 8 }}></View>
+              <Text style={styles.resultLabel}>{disease?.prevention}</Text>
+              <View style={{ height: 30 }}></View>
+
+              {/* <TouchableOpacity onPress={() => handleOnPressLink(disease?.link)}>
                 <Text style={styles.resultLabel}>For more information about {disease?.className}, 
                   <Text style={{...styles.resultLabel, color: 'lightblue'}}> visit this link</Text>
                 </Text>
-              </TouchableOpacity>
-              <View style={{height: 50}}></View>
+              </TouchableOpacity> */}
+              <View style={{ height: 50 }}></View>
 
-              <GradientButton 
-                onPress={handleReset}  
+              <GradientButton
+                onPress={handleReset}
                 text="Scan Again"
                 iconProp={{
                   type: 'AntDesign',
@@ -81,14 +98,14 @@ const ListResults = ({data, navigation}) => {
           )
         }}
       />
-      
-      
+
+
     </View>
   )
 
 }
 
-const Details = ({route, navigation}) => {  
+const Details = ({ route, navigation }) => {
 
   return (
     <LinearGradient style={styles.container} colors={[...colors.bg.gradient, "#31447d"]}>
@@ -112,12 +129,12 @@ const styles = StyleSheet.create({
   },
   resultItem: {
     paddingVertical: 8, paddingHorizontal: 4
-  },  
+  },
   resultContainer: {
     flex: 0, flexDirection: 'row', marginTop: 12
   },
   resultLabel: {
-    flex:0,
+    flex: 0,
     fontSize: 14, color: "#fff", textAlign: 'left'
   },
   resultName: {

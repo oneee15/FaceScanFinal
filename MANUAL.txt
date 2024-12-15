@@ -13,3 +13,6 @@ Uploading APK (via web url)
  Link: https://installonair.com/
  Upload to google drive
  
+Manage/Update Disease details
+ go to folder:
+   src/details/data.json
